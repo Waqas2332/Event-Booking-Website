@@ -6,7 +6,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <main className="">
+      <main className="mt-16">
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
