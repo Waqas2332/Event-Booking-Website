@@ -11,6 +11,8 @@ const BackDrop = ({ onClose }: BackDropProps) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 0.3 }}
       exit={{ opacity: 0 }}
+      key="backdrop"
+      transition={{ duration: 0.3 }}
       onClick={onClose}
     />
   );

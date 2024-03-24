@@ -4,10 +4,15 @@ import { Link } from "react-router-dom";
 const SideDrawer = () => {
   return (
     <motion.div
+      key="side-drawer"
       className="fixed flex justify-between top-0  left-0 h-full w-[300px] bg-primary z-20"
       initial={{ x: "-300%" }}
       animate={{ x: 0 }}
-      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+      exit={{ x: "-300%" }}
+      transition={{
+        duration: 0.5,
+        type: "spring",
+      }}
       style={{ opacity: 1 }}
     >
       <div className="text-black mt-4 ms-8 w-full flex flex-col  h-[95%]">

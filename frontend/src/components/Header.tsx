@@ -3,6 +3,7 @@ import BackDrop from "./BackDrop";
 import { useState } from "react";
 import SideDrawer from "./SideDrawer";
 import { IoMenu } from "react-icons/io5";
+import { AnimatePresence } from "framer-motion";
 
 const Header = () => {
   const [isMobileNav, setIsMobileNav] = useState(false);
@@ -49,12 +50,14 @@ const Header = () => {
           />
         </div>
       </div>
-      {isMobileNav && (
-        <>
-          <BackDrop onClose={closeDrawer} />
-          <SideDrawer />
-        </>
-      )}
+      <AnimatePresence>
+        {isMobileNav && (
+          <>
+            <BackDrop onClose={closeDrawer} />
+            <SideDrawer />
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
