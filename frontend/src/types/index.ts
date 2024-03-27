@@ -1,7 +1,7 @@
 import { EventCategory } from "../data/categories";
 
 export type Event = {
-  id: number;
+  _id: string;
   title: string;
   description: string;
   date: Date;
@@ -9,8 +9,6 @@ export type Event = {
   capacity: number;
   category: EventCategory;
   imageUrl: string;
-  user: {
-    id: number;
-  };
-  attendees: [string];
+  user: string;
+  attendees: string[];
 };
