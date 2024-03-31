@@ -11,7 +11,7 @@
 }
 
 body {
-  @apply text-accent font-body;
+  @apply font-body;
 }
 
 .nav li a {

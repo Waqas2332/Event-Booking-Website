@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section className="flex w-full h-[88vh] hero">
+    <section className="flex w-full h-[88vh] hero text-white">
       <div className="w-[90%] mx-auto">
         <div className="w-full h-full flex-col gap-2 flex justify-center items-center">
           <h2 className="font-headings text-4xl font-semibold">

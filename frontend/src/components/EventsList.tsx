@@ -7,10 +7,10 @@ type EventsListProp = {
 
 const EventsList = ({ events }: EventsListProp) => {
   return (
-    <div className="mt-12 flex flex-wrap container justify-center gap-10">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {events.map((event) => (
-        <div key={event._id} className="w-[300px] shadow-md mb-7 rounded-md">
-          <div className="w-full h-1/2 overflow-hidden rounded-t-md">
+        <div key={event._id} className="rounded-xl shadow-md relative">
+          <div className="w-full h-3/5 overflow-hidden rounded-t-md">
             <motion.img
               src={event.imageUrl}
               alt={event.title}

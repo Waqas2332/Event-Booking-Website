@@ -17,7 +17,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-primary flex py-4 items-center fixed top-0 w-full z-10">
+    <header className="bg-primary text-white flex py-4 items-center fixed top-0 w-full z-10">
       <div className="w-[90%]  mx-auto flex justify-between items-center">
         <h2 className="font-headings text-2xl cursor-pointer text-secondary">
           <Link to="/">EventFul</Link>
