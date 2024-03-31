@@ -4,7 +4,8 @@ export type Event = {
   _id: string;
   title: string;
   description: string;
-  date: Date;
+  date: string;
+  startTime: string;
   location: string;
   capacity: number;
   category: EventCategory;

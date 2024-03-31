@@ -24,7 +24,7 @@ const EventsList = ({ events }: EventsListProp) => {
               {event.title.substring(0, 25)}
             </h2>
             <small className="italic relative -top-2">
-              Held on {event.date.toDateString()}
+              Held on {event.date}
             </small>
             <p>Available Seats : {event.capacity}</p>
             <button className="btn-primary mt-3">Book Now</button>
