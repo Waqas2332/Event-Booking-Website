@@ -4,8 +4,11 @@ import { type Event } from "../types";
 import Spinner from "./Spinner";
 import { useQuery } from "@tanstack/react-query";
 import { getAllEvents } from "../http";
+import { useNavigate } from "react-router-dom";
 
 const FeaturedEvents = () => {
+  const navigate = useNavigate();
+
   const { data, isPending } = useQuery<Event[]>({
     queryKey: ["events"],
     queryFn: getAllEvents,
@@ -29,6 +32,7 @@ const FeaturedEvents = () => {
           initial={{ scale: 1 }}
           whileHover={{ scale: 1.1 }}
           className="btn-primary w-40"
+          onClick={() => navigate("/events")}
         >
           Browse More
         </motion.button>

@@ -36,7 +36,7 @@ const Header = () => {
             </li>
             <li>
               <NavLink
-                to="/explore-events"
+                to="/events"
                 className={({ isActive }) =>
                   isActive ? "active" : "nav-links"
                 }

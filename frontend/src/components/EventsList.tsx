@@ -7,10 +7,10 @@ type EventsListProp = {
 
 const EventsList = ({ events }: EventsListProp) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {events.map((event) => (
         <div key={event._id} className="rounded-xl shadow-md relative">
-          <div className="w-full h-3/5 overflow-hidden rounded-t-md">
+          <div className="w-full h-1/2 overflow-hidden rounded-t-md">
             <motion.img
               src={event.imageUrl}
               alt={event.title}
@@ -20,14 +20,25 @@ const EventsList = ({ events }: EventsListProp) => {
             />
           </div>
           <div className="w-full pt-4 ps-4">
-            <h2 className="w-3/4 truncate font-semibold text-xl">
-              {event.title.substring(0, 25)}
-            </h2>
-            <small className="italic relative -top-2">
-              Held on {event.date}
-            </small>
-            <p>Available Seats : {event.capacity}</p>
-            <button className="btn-primary mt-3">Book Now</button>
+            <p className="text-sm">
+              Category: <span className="italic">{event.category}</span>
+            </p>
+            <div className="flex w-full justify-between items-center">
+              <div className="w-3/4">
+                <h2 className="truncate font-semibold text-xl">
+                  {event.title.substring(0, 25)}
+                </h2>
+
+                <p className="italic text-sm relative -top-1 flex justify-between">
+                  Held on {event.date}{" "}
+                </p>
+              </div>
+              <div>
+                <span className="mr-6 font-bold text-base">$20</span>
+              </div>
+            </div>
+            <p className="mt-3">Available Seats : {event.capacity}</p>
+            <button className="btn-primary relative mt-3">Book Now</button>
           </div>
         </div>
       ))}
