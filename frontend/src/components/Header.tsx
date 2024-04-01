@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import BackDrop from "./BackDrop";
 import { useState } from "react";
 import SideDrawer from "./SideDrawer";
@@ -25,22 +25,59 @@ const Header = () => {
         <div className="max-md:hidden">
           <ul className="flex gap-6 nav max-lg:text-sm max">
             <li>
-              <Link to="/">Explore Events</Link>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "active" : "nav-links"
+                }
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <Link to="/">Create Event</Link>
+              <NavLink
+                to="/explore-events"
+                className={({ isActive }) =>
+                  isActive ? "active" : "nav-links"
+                }
+              >
+                Explore Events
+              </NavLink>
             </li>
             <li>
-              <Link to="/">My Events</Link>
+              <NavLink
+                to="/create-event"
+                className={({ isActive }) =>
+                  isActive ? "active" : "nav-links"
+                }
+              >
+                Create Event
+              </NavLink>
             </li>
             <li>
-              <Link to="/">About Us</Link>
+              <NavLink
+                to="/my-events"
+                className={({ isActive }) =>
+                  isActive ? "active" : "nav-links"
+                }
+              >
+                My Events
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive ? "active" : "nav-links"
+                }
+              >
+                About Us
+              </NavLink>
             </li>
           </ul>
         </div>
         <div className="flex gap-4 max-md:hidden">
           <button className="btn">Sign in</button>
-          <button className="btn-outline">Sign Up</button>
         </div>
         <div className="hidden max-md:block">
           <IoMenu

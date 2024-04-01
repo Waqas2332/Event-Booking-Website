@@ -14,11 +14,15 @@ body {
   @apply font-body;
 }
 
-.nav li a {
+.nav-links {
   position: relative;
 }
 
-.nav li a::after {
+.active {
+  border-bottom: 2px solid #ffe894;
+}
+
+.nav-links::after {
   content: "";
   position: absolute;
   width: 0;
