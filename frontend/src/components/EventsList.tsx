@@ -38,7 +38,7 @@ const EventsList = ({ events }: EventsListProp) => {
               </div>
             </div>
             <p className="mt-3">Available Seats : {event.capacity}</p>
-            <button className="btn-primary relative mt-3">Book Now</button>
+            <button className="btn-primary relative mt-3">Details</button>
           </div>
         </div>
       ))}
