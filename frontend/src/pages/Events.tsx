@@ -5,14 +5,13 @@ import EventsList from "../components/EventsList";
 import { Event } from "../types";
 
 const Events = () => {
-  const { data, isPending } = useQuery<Event[]>({
+  const { data, isLoading } = useQuery<Event[]>({
     queryKey: ["events"],
     queryFn: getAllEvents,
-    staleTime: 5000,
   });
 
-  if (isPending) {
-    return <Spinner loading={isPending} />;
+  if (isLoading) {
+    return <Spinner loading={isLoading} />;
   }
 
   return (

@@ -10,7 +10,7 @@ const EventsList = ({ events }: EventsListProp) => {
   const naviagte = useNavigate();
 
   const navigateToSingleEvent = (id: string) => {
-    naviagte(`/events/${id}`);
+    naviagte(`/event/${id}`);
   };
 
   return (
