@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Header from "./components/Header";
 import Events from "./pages/Events";
+import SingleEvent from "./pages/SingleEvent";
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/events/:eventId" element={<SingleEvent />} />
         </Routes>
       </main>
     </>

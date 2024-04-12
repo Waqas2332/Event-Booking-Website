@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Event } from "../types";
 import { motion } from "framer-motion";
 
@@ -6,6 +7,12 @@ type EventsListProp = {
 };
 
 const EventsList = ({ events }: EventsListProp) => {
+  const naviagte = useNavigate();
+
+  const navigateToSingleEvent = (id: string) => {
+    naviagte(`/events/${id}`);
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {events.map((event) => (
@@ -16,6 +23,7 @@ const EventsList = ({ events }: EventsListProp) => {
               alt={event.title}
               initial={{ scale: 1 }}
               whileHover={{ scale: 1.1 }}
+              onClick={() => navigateToSingleEvent(event._id)}
               className="w-full h-full object-cover object-center rounded-t-md cursor-pointer"
             />
           </div>
@@ -38,7 +46,12 @@ const EventsList = ({ events }: EventsListProp) => {
               </div>
             </div>
             <p className="mt-3">Available Seats : {event.capacity}</p>
-            <button className="btn-primary relative mt-3">Details</button>
+            <button
+              onClick={() => navigateToSingleEvent(event._id)}
+              className="btn-primary relative mt-3"
+            >
+              Details
+            </button>
           </div>
         </div>
       ))}
