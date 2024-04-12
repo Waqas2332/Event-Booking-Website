@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getSingleEvent } from "../http";
 import Spinner from "../components/Spinner";
 import { Event } from "../types";
+import CustomGoogleMap from "../components/GoogleMap";
 
 const SingleEvent = () => {
   const { eventId } = useParams();
@@ -15,7 +16,13 @@ const SingleEvent = () => {
     return <Spinner loading={isLoading} />;
   }
 
-  return <div>{data?.title}</div>;
+  return (
+    data && (
+      <div>
+        <CustomGoogleMap location={data.location} />
+      </div>
+    )
+  );
 };
 
 export default SingleEvent;
