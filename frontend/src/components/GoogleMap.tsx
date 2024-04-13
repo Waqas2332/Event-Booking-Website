@@ -56,7 +56,7 @@ const CustomGoogleMap = ({ location }: CustomGoogleMapProps) => {
     };
   }
 
-  const zoom = 15;
+  const zoom = 16;
 
   return (
     isLoaded && (
