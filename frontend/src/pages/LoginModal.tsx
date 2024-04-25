@@ -1,6 +1,6 @@
 import { Dialog } from "@headlessui/react";
 import { useAuth } from "../context/AuthContext";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
 type LoginModalProps = {
@@ -9,7 +9,7 @@ type LoginModalProps = {
 };
 
 const LoginModal = ({ isOpen, location }: LoginModalProps) => {
-  const { setOpenModal, isAuthenticated } = useAuth();
+  const { onCloseSigninModal, isAuthenticated, onOpenSignupModal } = useAuth();
   const currLocation = useLocation();
 
   function checkAuthentication() {
@@ -19,7 +19,7 @@ const LoginModal = ({ isOpen, location }: LoginModalProps) => {
   }
 
   return (
-    <Dialog open={isOpen} onClose={() => setOpenModal(false)}>
+    <Dialog open={isOpen} onClose={onCloseSigninModal}>
       <Dialog.Overlay
         onClick={checkAuthentication}
         className="fixed inset-0 bg-black opacity-30"
@@ -37,10 +37,10 @@ const LoginModal = ({ isOpen, location }: LoginModalProps) => {
           </div>
           <button className="btn-primary mt-4 w-full">Login</button>
           <div className="text-center mt-4">
-            <Link to="/auth/register" className="text-sm">
+            <p className="text-sm cursor-pointer" onClick={onOpenSignupModal}>
               Don't have an account?{" "}
               <span className="italic text-primary underline">Signup Now</span>
-            </Link>
+            </p>
           </div>
         </form>
       </div>

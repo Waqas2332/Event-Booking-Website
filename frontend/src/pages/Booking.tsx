@@ -3,12 +3,12 @@ import { useAuth } from "../context/AuthContext";
 import { useLocation } from "react-router-dom";
 
 const Booking = () => {
-  const { isAuthenticated, openModal, setOpenModal } = useAuth();
+  const { isAuthenticated, openSigninModal, onOpenSigninModal } = useAuth();
   const location = useLocation();
 
   if (!isAuthenticated) {
-    setOpenModal(true);
-    return <LoginModal location={location.pathname} isOpen={openModal} />;
+    onOpenSigninModal();
+    return <LoginModal location={location.pathname} isOpen={openSigninModal} />;
   }
 
   return <div>Booking</div>;
