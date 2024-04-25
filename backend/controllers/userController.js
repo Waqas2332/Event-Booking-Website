@@ -10,7 +10,7 @@ export const signup = async (req, res, next) => {
     const userExists = await User.findOne({ email: email });
     if (userExists) {
       return res
-        .status(403)
+        .status(409)
         .json({ message: "User already exists", ok: false });
     }
 
@@ -22,13 +22,38 @@ export const signup = async (req, res, next) => {
       password: hashedPassword,
     });
 
-    generateToken(res, user._id);
+    const token = generateToken(user._id);
 
     res
       .status(201)
-      .json({ message: "User Created Successfully", ok: true, user });
+      .json({ message: "User Created Successfully", ok: true, user, token });
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
+  }
+};
+
+export const signin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const userExists = await User.findOne({ email: email });
+    if (!userExists) {
+      return res
+        .status(404)
+        .json({ message: "Invalid Credentials", ok: false });
+    }
+
+    const matchPassword = await bcryptjs.compare(password, userExists.password);
+    if (!matchPassword) {
+      return res
+        .status(404)
+        .json({ message: "Invalid Credentials", ok: false });
+    }
+    const token = generateToken(userExists._id);
+    res
+      .status(200)
+      .json({ message: "Sign in successfully", userExists, token });
+  } catch (error) {
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
