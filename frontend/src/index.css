@@ -65,3 +65,19 @@ body {
 .btn-outline:hover {
   @apply bg-secondary text-primary rounded-md transition-all;
 }
+
+.form-control {
+  @apply flex flex-col gap-1 mt-4;
+}
+
+.form-control label {
+  @apply font-body ms-1;
+}
+
+.form-control input {
+  @apply border-2 rounded-md p-2;
+}
+
+.form-control input:focus {
+  @apply outline-none border-primary;
+}

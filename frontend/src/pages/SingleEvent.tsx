@@ -1,14 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getSingleEvent } from "../http";
 import Spinner from "../components/Spinner";
 import { Event } from "../types";
 import CustomGoogleMap from "../components/GoogleMap";
 import BackButton from "../components/BackButton";
 import { format } from "date-fns";
+import { motion } from "framer-motion";
 
 const SingleEvent = () => {
   const { eventId } = useParams();
+  const navigate = useNavigate();
+
   const { data, isLoading } = useQuery<Event>({
     queryKey: ["events", eventId],
     queryFn: () => getSingleEvent(eventId!),
@@ -16,6 +19,10 @@ const SingleEvent = () => {
 
   if (isLoading) {
     return <Spinner loading={isLoading} />;
+  }
+
+  function onNavigate() {
+    navigate(`/event/${eventId}/booking`);
   }
 
   return (
@@ -52,10 +59,16 @@ const SingleEvent = () => {
               <span className="">Avaliable Capacity: </span>
               <span className="italic font-semibold">{data.capacity}</span>
             </p>
-            <button className="btn-primary mt-4">Book Now</button>
+            <motion.button
+              onClick={onNavigate}
+              whileTap={{ scale: 0.98 }}
+              className="btn-primary mt-4"
+            >
+              Book Now
+            </motion.button>
           </div>
           <div className="w-1/2">
-            <CustomGoogleMap location={data.location} />
+            {/* <CustomGoogleMap location={data.location} /> */}
           </div>
         </div>
       </div>

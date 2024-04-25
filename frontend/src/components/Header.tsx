@@ -4,9 +4,11 @@ import { useState } from "react";
 import SideDrawer from "./SideDrawer";
 import { IoMenu } from "react-icons/io5";
 import { AnimatePresence } from "framer-motion";
+import { useAuth } from "../context/AuthContext";
 
 const Header = () => {
   const [isMobileNav, setIsMobileNav] = useState(false);
+  const { isAuthenticated } = useAuth();
 
   const openDrawer = () => {
     setIsMobileNav(true);
@@ -77,7 +79,9 @@ const Header = () => {
           </ul>
         </div>
         <div className="flex gap-4 max-md:hidden">
-          <button className="btn">Sign in</button>
+          <button className="btn">
+            {isAuthenticated ? "Sign out" : "Sign in"}
+          </button>
         </div>
         <div className="hidden max-md:block">
           <IoMenu
