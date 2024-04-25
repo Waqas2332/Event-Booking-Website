@@ -1,11 +1,14 @@
 import axios from "axios";
 import { FormEvent, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useAuth } from "../context/AuthContext";
 
 const Signin = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -21,6 +24,10 @@ const Signin = () => {
         data
       );
       toast.success(response.data.message);
+      localStorage.setItem("token", JSON.stringify(response.data.token));
+      login(response.data.user);
+      navigate("/events");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (error.response.status === 404) {
         toast.error(error.response.data.message);

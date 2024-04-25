@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FormEvent, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useAuth } from "../context/AuthContext";
 
 const Signup = () => {
   const firstNameRef = useRef<HTMLInputElement>(null);
@@ -10,6 +11,7 @@ const Signup = () => {
   const passwordRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -22,9 +24,15 @@ const Signup = () => {
     };
     try {
       setIsLoading(true);
-      await axios.post("http://localhost:5000/api/auth/signup", data);
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/signup",
+        data
+      );
       toast.success("Signup Successful");
-      navigate(-2);
+      localStorage.setItem("token", JSON.stringify(response.data.token));
+      login(response.data.user);
+      navigate("/");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (error.response.status === 409) {
         toast.error(error.response.data.message);

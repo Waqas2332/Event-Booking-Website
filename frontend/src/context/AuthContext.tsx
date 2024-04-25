@@ -1,15 +1,11 @@
-import {
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  createContext,
-  useContext,
-  useState,
-} from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ReactNode, createContext, useContext, useState } from "react";
+import { User } from "../types";
 
 type AuthContextType = {
   isAuthenticated: boolean;
-  setIsAuthenticated: Dispatch<SetStateAction<boolean>>;
+  login: (userData: any) => void;
+  user: User | null;
 };
 
 const AuthContext = createContext({} as AuthContextType);
@@ -24,13 +20,27 @@ type AuthProviderProps = {
 };
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    localStorage.getItem("user") ? true : false
+  );
+  const [user, setUser] = useState<User | null>(
+    localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user")!)
+      : null
+  );
+
+  const login = (userData: any) => {
+    setIsAuthenticated(true);
+    localStorage.setItem("user", JSON.stringify(userData));
+    setUser(userData);
+  };
 
   return (
     <AuthContext.Provider
       value={{
         isAuthenticated,
-        setIsAuthenticated,
+        login,
+        user,
       }}
     >
       {children}

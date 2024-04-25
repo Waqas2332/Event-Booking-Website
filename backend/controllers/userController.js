@@ -52,7 +52,7 @@ export const signin = async (req, res) => {
     const token = generateToken(userExists._id);
     res
       .status(200)
-      .json({ message: "Sign in successfully", userExists, token });
+      .json({ message: "Sign in successfully", user: userExists, token });
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error" });
   }
