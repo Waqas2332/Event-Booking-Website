@@ -9,12 +9,6 @@ import {
 
 type AuthContextType = {
   isAuthenticated: boolean;
-  openSigninModal: boolean;
-  openSignupModal: boolean;
-  onOpenSignupModal: () => void;
-  onCloseSignupModal: () => void;
-  onOpenSigninModal: () => void;
-  onCloseSigninModal: () => void;
   setIsAuthenticated: Dispatch<SetStateAction<boolean>>;
 };
 
@@ -31,37 +25,12 @@ type AuthProviderProps = {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [openSigninModal, setOpenSigninModal] = useState(false);
-  const [openSignupModal, setOpenSignupModal] = useState(false);
-
-  // handling modals
-  const onOpenSignupModal = () => {
-    setOpenSignupModal(true);
-  };
-
-  const onCloseSignupModal = () => {
-    setOpenSignupModal(false);
-  };
-
-  const onOpenSigninModal = () => {
-    setOpenSigninModal(true);
-  };
-
-  const onCloseSigninModal = () => {
-    setOpenSigninModal(false);
-  };
 
   return (
     <AuthContext.Provider
       value={{
         isAuthenticated,
-        openSigninModal,
         setIsAuthenticated,
-        openSignupModal,
-        onOpenSignupModal,
-        onCloseSignupModal,
-        onOpenSigninModal,
-        onCloseSigninModal,
       }}
     >
       {children}

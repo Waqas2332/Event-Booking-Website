@@ -1,15 +1,20 @@
-import LoginModal from "./LoginModal";
+import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Booking = () => {
-  const { isAuthenticated, openSigninModal, onOpenSigninModal } = useAuth();
-  const location = useLocation();
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
-  if (!isAuthenticated) {
-    onOpenSigninModal();
-    return <LoginModal location={location.pathname} isOpen={openSigninModal} />;
-  }
+  useEffect(() => {
+    function checkAuth() {
+      if (!isAuthenticated) {
+        navigate("/auth/signin");
+      }
+    }
+
+    checkAuth();
+  }, []);
 
   return <div>Booking</div>;
 };
